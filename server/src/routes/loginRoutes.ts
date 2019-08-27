@@ -19,7 +19,7 @@ router.get('/', (req: RequestWithBody, res: Response) => {
         res.send(`
         <div>
 			<div>You are not logged in</div>
-			<a href="/login">Logout</a>
+			<a href="/login">Login</a>
         </div>
     `);
     }
@@ -41,6 +41,11 @@ router.get('/login', (req: RequestWithBody, res: Response) => {
     </form>
     `);
 });
+
+router.get('/logout', (req: RequestWithBody, res: Response)=> {
+    req.session = undefined;
+    res.redirect('/');
+})
 
 router.post('/login', (req: RequestWithBody, res: Response) => {
 	const { email, password } = req.body;
